@@ -2,10 +2,14 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class Sprite_Behaviour : MonoBehaviour
 {
     public List<GameObject> spawnList = new List<GameObject>();
+    [SerializeField] TMP_Text symbolText;
+    [SerializeField] TMP_Text bigNumberText;
+    [SerializeField] TMP_Text conditionText;
 
     //public List<GameObject> instanciatedObjects = new List<GameObject>();
 
@@ -13,9 +17,12 @@ public class Sprite_Behaviour : MonoBehaviour
     public float zoffset = 0;
     
     int sum;
+    //string gameState;
+   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //gameState = "Start";
         // const int N = 9;
         // for(int i = 0; i < N; i++) {
         //         spawnList.Add(Instantiate(prefab));
@@ -103,13 +110,92 @@ public class Sprite_Behaviour : MonoBehaviour
     }
 
     void Update() { // doesnt run once lol why
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            sum++;
-            Debug.Log("Add sprite : " + sum);
+            // Debug.Log("Add sprite : " + sum);
+            // if symbol == "+"
             Spawn(1);
-
+            sum += 1;
+            //receivedInput = true;
             
+            // else Destroy(spawnList[0]);
+        } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            Spawn(2);
+            sum += 1;
+            //  receivedInput = true;
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            Spawn(3);
+            sum += 1;
+            // receivedInput = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4)) {
+            Spawn(4);
+            sum += 1;
+            // receivedInput = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5)) {
+            Spawn(5);
+            sum += 1;
+            // receivedInput = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6)) {
+            Spawn(6);
+            sum += 1;
+            //  receivedInput = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7)) {
+            Spawn(7);
+            sum += 1;
+            // receivedInput = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8)) {
+            Spawn(8);
+            sum += 1;
+            // receivedInput = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9)) {
+            Spawn(9);
+            sum += 1;
+            // receivedInput = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha0)) {
+            // calculate sum or difference
+        } else
+        {
+          //  receivedInput = false;
+        }
+
+
+        List<string> symbolList = new List<string>(); // +, -
+        symbolList.Add("+");
+        symbolList.Add("-");
+
+        List<int> numbers = new List<int>();
+        numbers.Add(0);
+        numbers.Add(1);
+        numbers.Add(2);
+        numbers.Add(3);
+        numbers.Add(4);
+        numbers.Add(5);
+        numbers.Add(6);
+        numbers.Add(7);
+        numbers.Add(8);
+        numbers.Add(9);
+
+        // select random
+        string ranSym = symbolList[Random.Range(1, 3)];
+        int ranNum = numbers[Random.Range(0, 10)];
+
+        // display symbol
+        symbolText.text = string.Format("{+}", ranSym);
+        bigNumberText.text = string.Format("{1}", ranNum);
+
+        if (sum == ranNum)
+        {
+            conditionText.text = "{Yay}";
+        }
+
+
     }
 }
